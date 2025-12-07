@@ -1,0 +1,62 @@
+[
+  {
+    "timestamp": "2024-12-07T10:15:32.123Z",
+    "level": "INFO",
+    "service": "api-gateway",
+    "message": "Request processed successfully - GET /api/users - 200 OK - 45ms"
+  },
+  {
+    "timestamp": "2024-12-07T10:16:01.456Z",
+    "level": "ERROR",
+    "service": "payment-service",
+    "message": "Payment processing failed: Connection timeout to payment gateway at 10.0.1.45"
+  },
+  {
+    "timestamp": "2024-12-07T10:16:15.789Z",
+    "level": "WARNING",
+    "service": "user-service",
+    "message": "Database query slow: SELECT * FROM users took 2500ms"
+  },
+  {
+    "timestamp": "2024-12-07T10:17:00.111Z",
+    "level": "CRITICAL",
+    "service": "payment-service",
+    "message": "Exception in payment processor: java.net.SocketTimeoutException: connect timed out"
+  },
+  {
+    "timestamp": "2024-12-07T10:17:30.222Z",
+    "level": "INFO",
+    "service": "api-gateway",
+    "message": "Health check passed - all services responding"
+  },
+  {
+    "timestamp": "2024-12-07T10:18:05.333Z",
+    "level": "ERROR",
+    "service": "database",
+    "message": "Connection pool exhausted - max connections 100 reached"
+  },
+  {
+    "timestamp": "2024-12-07T10:18:45.444Z",
+    "level": "WARNING",
+    "service": "cache-service",
+    "message": "Cache miss rate high: 85% in last 5 minutes"
+  },
+  {
+    "timestamp": "2024-12-07T10:19:00.555Z",
+    "level": "INFO",
+    "service": "user-service",
+    "message": "User authentication successful - user_id: 12345"
+  },
+  {
+    "timestamp": "2024-12-07T10:19:30.666Z",
+    "level": "ERROR",
+    "service": "notification-service",
+    "message": "Failed to send email notification: SMTP server 503 Service unavailable"
+  },
+  {
+    "timestamp": "2024-12-07T10:20:00.777Z",
+    "level": "INFO",
+    "service": "api-gateway",
+    "message": "Request rate: 1250 req/min - within normal limits"
+  }
+]
