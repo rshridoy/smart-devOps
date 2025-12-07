@@ -42,7 +42,9 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
   - XGBoost for failure prediction
   - SentenceTransformers for log embeddings
 - **LLM**: Mistral 7B via Ollama
-- **Dashboard**: Streamlit with Plotly
+- **Dashboard**: 
+  - Streamlit with Plotly (classic UI)
+  - React 18 + TailwindCSS (modern UI)
 - **Deployment**: Docker & Docker Compose
 - **Alerts**: Slack webhooks, SMTP email
 
@@ -84,9 +86,19 @@ This will start:
 docker exec -it ollama ollama pull mistral
 ```
 
-5. **Access the dashboard**
+5. **Access the dashboards**
+
+**Streamlit Dashboard (Classic)**
 ```
 http://localhost:8501
+```
+
+**React Dashboard (Modern)**
+```bash
+cd frontend
+npm install
+npm run dev
+# Access at http://localhost:3000
 ```
 
 6. **API Documentation**
@@ -142,6 +154,8 @@ done
 
 ### Dashboard Features
 
+#### Streamlit Dashboard (Classic)
+
 1. **Overview Tab**
    - Real-time metrics (total logs, errors, warnings)
    - Log level distribution pie chart
@@ -164,6 +178,46 @@ done
    - LLM-powered root cause analysis
    - Actionable recommendations
    - Context-aware insights
+
+#### React Dashboard (Modern)
+
+1. **Dashboard Page**
+   - Live system metrics and stats
+   - Interactive charts (Chart.js & Recharts)
+   - Service health monitoring
+   - Recent anomalies preview
+   - Real-time updates via WebSocket
+
+2. **Logs Page**
+   - Searchable log table with filters
+   - Level-based color coding
+   - Auto-refresh every 10 seconds
+   - Export logs to JSON
+   - Service and level filtering
+
+3. **Anomalies Page**
+   - Severity-based cards (Low/Medium/High/Critical)
+   - Anomaly score visualization
+   - Statistics overview
+   - Timestamp and service info
+   - Refresh button
+
+4. **Predict & RCA Page**
+   - Service-specific failure prediction
+   - Risk gauge with recommendations
+   - AI-powered root cause analysis
+   - Select multiple logs for analysis
+   - Context input for better insights
+
+5. **Settings Page**
+   - Slack webhook configuration
+   - SMTP email setup
+   - Test alert functionality
+   - Save configuration via API
+
+**Tech Stack**: React 18, Vite, TailwindCSS, React Router, Chart.js, Recharts, Axios, Lucide Icons
+
+See [frontend/README.md](frontend/README.md) for detailed setup instructions.
 
 ## Configuration
 
@@ -260,6 +314,17 @@ ai-devops-monitor/
 │   └── models/                # Trained ML models
 ├── dashboard/
 │   └── app.py                 # Streamlit dashboard
+├── frontend/                  # React dashboard
+│   ├── src/
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Page components
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── utils/            # API client
+│   │   ├── App.jsx           # Main app
+│   │   └── main.jsx          # Entry point
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
 ├── data/
 │   └── sample_logs.json       # Sample log data
 ├── docker-compose.yml         # Docker services
@@ -295,8 +360,14 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 5. **Run dashboard**
 ```bash
+# Streamlit (Classic)
 cd dashboard
 streamlit run app.py
+
+# React (Modern)
+cd frontend
+npm install
+npm run dev
 ```
 
 ## Monitoring & Operations

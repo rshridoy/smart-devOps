@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-6 transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-700 text-gray-200 px-4 py-2 rounded-lg hover:bg-gray-600 transition-all duration-200 font-medium;
+  }
+  
+  .btn-danger {
+    @apply bg-danger-600 text-white px-4 py-2 rounded-lg hover:bg-danger-700 transition-all duration-200 font-medium shadow-sm hover:shadow-md;
+  }
+  
+  .input {
+    @apply bg-gray-800 border border-gray-600 text-gray-100 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide;
+  }
+  
+  .badge-info {
+    background-color: rgba(30, 58, 138, 0.4);
+    color: #93c5fd;
+    border: 1px solid #1d4ed8;
+  }
+  
+  .badge-warning {
+    background-color: rgba(120, 53, 15, 0.4);
+    color: #fcd34d;
+    border: 1px solid #b45309;
+  }
+  
+  .badge-error {
+    background-color: rgba(127, 29, 29, 0.4);
+    color: #fca5a5;
+    border: 1px solid #b91c1c;
+  }
+  
+  .badge-critical {
+    background-color: rgba(127, 29, 29, 0.5);
+    color: #fecaca;
+    border: 1px solid #dc2626;
+  }
+  
+  .badge-debug {
+    @apply bg-gray-700 text-gray-300 border border-gray-600;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 5px;
+  border: 2px solid #1f2937;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
