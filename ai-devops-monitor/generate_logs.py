@@ -195,7 +195,7 @@ def main():
     print(f"✅ Successfully sent: {success_count} logs")
     if failed_count > 0:
         print(f"❌ Failed to send: {failed_count} logs")
-    print(f"📊 View logs in dashboard: http://localhost:8501")
+    print(f"📊 View logs in React dashboard: http://localhost:5173 (run 'npm run dev' in frontend/)")
     print(f"🔍 Check anomalies at: http://localhost:8000/analysis/anomalies")
 
 if __name__ == "__main__":

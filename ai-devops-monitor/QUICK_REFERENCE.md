@@ -10,7 +10,7 @@ start.bat
 ```
 
 ## Access URLs
-- Dashboard: http://localhost:8501
+- React Dashboard: http://localhost:5173 (run 'npm run dev' in frontend/)
 - API Docs: http://localhost:8000/docs
 - API: http://localhost:8000
 - OpenSearch: http://localhost:9200
@@ -29,7 +29,7 @@ docker-compose down
 docker-compose logs -f
 
 # Restart service
-docker-compose restart [backend|dashboard|opensearch|ollama]
+docker-compose restart [backend|opensearch|ollama]
 
 # Check status
 docker-compose ps
@@ -177,9 +177,10 @@ docker-compose up -d opensearch ollama
 # Run backend
 uvicorn app.main:app --reload --port 8000
 
-# Run dashboard (new terminal)
-cd dashboard
-streamlit run app.py
+# Run frontend (new terminal)
+cd frontend
+npm install
+npm run dev
 ```
 
 ### Test API
@@ -198,7 +199,7 @@ http://localhost:8000/redoc
 - **Models**: `app/models/*.pkl`
 - **Sample Data**: `data/sample_logs.json`
 - **Backend**: `app/`
-- **Dashboard**: `dashboard/app.py`
+- **Frontend**: `frontend/`
 
 ## Performance
 
@@ -233,12 +234,6 @@ deploy:
 - **Contributing**: CONTRIBUTING.md
 - **Issues**: Create GitHub issue
 - **Discussions**: GitHub Discussions
-
-## Keyboard Shortcuts (Dashboard)
-
-- `r` - Rerun app
-- `c` - Clear cache
-- `h` - Show help
 
 ---
 

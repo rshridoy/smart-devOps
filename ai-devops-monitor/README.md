@@ -8,7 +8,7 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
 - **Anomaly Detection**: ML-powered detection using Isolation Forest and sentence embeddings
 - **Failure Prediction**: XGBoost-based predictive analytics for service failures
 - **AI Root Cause Analysis**: LLM-powered analysis using Mistral 7B for intelligent insights
-- **Interactive Dashboard**: Streamlit-based UI with real-time metrics and visualizations
+- **Modern React Dashboard**: Beautiful UI with real-time metrics and visualizations
 - **Smart Alerts**: Automated notifications via Slack and email
 - **Scalable Storage**: OpenSearch for efficient log indexing and search
 
@@ -28,8 +28,8 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
                                  │
                                  ▼
                         ┌─────────────────┐
-                        │    Dashboard    │
-                        │   (Streamlit)   │
+                        │  React Dashboard │
+                        │  (Vite + React) │
                         └─────────────────┘
 ```
 
@@ -42,9 +42,7 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
   - XGBoost for failure prediction
   - SentenceTransformers for log embeddings
 - **LLM**: Mistral 7B via Ollama
-- **Dashboard**: 
-  - Streamlit with Plotly (classic UI)
-  - React 18 + TailwindCSS (modern UI)
+- **Frontend**: React 18 + Vite + TailwindCSS + Chart.js
 - **Deployment**: Docker & Docker Compose
 - **Alerts**: Slack webhooks, SMTP email
 
@@ -79,26 +77,20 @@ This will start:
 - OpenSearch (port 9200)
 - Ollama with Mistral (port 11434)
 - FastAPI Backend (port 8000)
-- Streamlit Dashboard (port 8501)
 
 4. **Pull Mistral model** (first time only)
 ```bash
 docker exec -it ollama ollama pull mistral
 ```
 
-5. **Access the dashboards**
+5. **Access the dashboard**
 
-**Streamlit Dashboard (Classic)**
-```
-http://localhost:8501
-```
-
-**React Dashboard (Modern)**
+**React Dashboard**
 ```bash
 cd frontend
 npm install
 npm run dev
-# Access at http://localhost:3000
+# Access at http://localhost:5173
 ```
 
 6. **API Documentation**
@@ -154,39 +146,12 @@ done
 
 ### Dashboard Features
 
-#### Streamlit Dashboard (Classic)
-
-1. **Overview Tab**
-   - Real-time metrics (total logs, errors, warnings)
-   - Log level distribution pie chart
-   - Logs by service bar chart
-   - Recent logs table with filtering
-
-2. **Anomalies Tab**
-   - Detected anomalies with scores
-   - Anomaly score distribution
-   - Detailed anomaly information
-
-3. **Predictions Tab**
-   - Service-specific failure prediction
-   - Risk level gauge (low/medium/high)
-   - Probability and confidence metrics
-   - Prediction features
-
-4. **AI Analysis Tab**
-   - Select error logs for analysis
-   - LLM-powered root cause analysis
-   - Actionable recommendations
-   - Context-aware insights
-
-#### React Dashboard (Modern)
-
 1. **Dashboard Page**
    - Live system metrics and stats
-   - Interactive charts (Chart.js & Recharts)
+   - Interactive charts (Chart.js)
    - Service health monitoring
    - Recent anomalies preview
-   - Real-time updates via WebSocket
+   - Log level distribution
 
 2. **Logs Page**
    - Searchable log table with filters
@@ -355,19 +320,15 @@ ollama pull mistral
 
 4. **Run backend**
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.main:app --reload --port 8000
 ```
 
-5. **Run dashboard**
+5. **Run frontend**
 ```bash
-# Streamlit (Classic)
-cd dashboard
-streamlit run app.py
-
-# React (Modern)
 cd frontend
 npm install
 npm run dev
+# Access at http://localhost:5173
 ```
 
 ## Monitoring & Operations
@@ -390,9 +351,6 @@ curl http://localhost:11434/api/tags
 ```bash
 # View backend logs
 docker logs -f backend
-
-# View dashboard logs
-docker logs -f dashboard
 
 # View OpenSearch logs
 docker logs -f opensearch

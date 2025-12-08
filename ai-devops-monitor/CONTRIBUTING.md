@@ -40,10 +40,11 @@ Thank you for your interest in contributing to AI DevOps Monitor! This document 
    uvicorn app.main:app --reload
    ```
 
-5. **Run dashboard**
+5. **Run frontend**
    ```bash
-   cd dashboard
-   streamlit run app.py
+   cd frontend
+   npm install
+   npm run dev
    ```
 
 ## Code Style

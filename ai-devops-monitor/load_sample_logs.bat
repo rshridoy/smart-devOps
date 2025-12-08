@@ -17,4 +17,4 @@ powershell -Command "$logs = Get-Content 'data\sample_logs.json' | ConvertFrom-J
 
 echo.
 echo Sample logs loaded successfully!
-echo View them in the dashboard: http://localhost:8501
+echo View them in the React dashboard: http://localhost:5173 (run 'npm run dev' in frontend/)

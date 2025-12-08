@@ -80,27 +80,6 @@ services:
       - devops-network
     restart: unless-stopped
 
-  # Streamlit Dashboard
-  dashboard:
-    image: python:3.11-slim
-    container_name: dashboard
-    depends_on:
-      - backend
-    working_dir: /app
-    volumes:
-      - ./dashboard:/app
-      - ./requirements.txt:/requirements.txt
-    command: >
-      sh -c "pip install --no-cache-dir -r /requirements.txt &&
-             streamlit run app.py --server.port=8501 --server.address=0.0.0.0"
-    environment:
-      - BACKEND_URL=http://backend:8000
-    ports:
-      - "8501:8501"
-    networks:
-      - devops-network
-    restart: unless-stopped
-
 volumes:
   opensearch-data:
   ollama-data:

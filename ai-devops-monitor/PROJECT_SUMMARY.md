@@ -28,8 +28,15 @@ ai-devops-monitor/
 │       ├── anomaly_model.pkl    # Trained anomaly detection model
 │       └── predictor_model.pkl  # Trained prediction model
 │
-├── dashboard/                    # Frontend dashboard
-│   └── app.py                   # Streamlit dashboard with 4 tabs
+├── frontend/                     # React frontend
+│   ├── src/
+│   │   ├── components/          # UI components
+│   │   ├── pages/               # Page components
+│   │   ├── hooks/               # Custom hooks
+│   │   ├── utils/               # Helper functions
+│   │   └── App.jsx              # Main app component
+│   ├── package.json
+│   └── vite.config.js
 │
 ├── data/                         # Sample data
 │   └── sample_logs.json         # Example log entries
@@ -81,7 +88,7 @@ docker exec ollama ollama pull mistral
 
 ## 🌐 Access Points
 
-- **Dashboard**: http://localhost:8501
+- **React Dashboard**: http://localhost:5173 (run 'npm run dev' in frontend/)
 - **API**: http://localhost:8000
 - **API Docs**: http://localhost:8000/docs
 - **OpenSearch**: http://localhost:9200
@@ -107,13 +114,13 @@ docker exec ollama ollama pull mistral
   - `POST /alerts/test` - Test alert
   - `POST /alerts/send` - Custom alert
 
-### 2. Streamlit Dashboard (Port 8501)
+### 2. React Dashboard (Port 5173)
 
-**Tabs:**
-- **Overview**: Metrics, charts, log table
-- **Anomalies**: Detected anomalies with scores
-- **Predictions**: Failure prediction with risk gauge
-- **AI Analysis**: LLM-powered root cause analysis
+**Pages:**
+- **Dashboard**: Overview with metrics, charts, recent logs
+- **Logs**: Searchable log table with filters
+- **Anomalies**: Detected anomalies with severity levels
+- **Predict & RCA**: Failure prediction and AI root cause analysis
 
 ### 3. ML Components
 
@@ -199,7 +206,7 @@ ALERT_EMAIL_RECIPIENTS=admin@example.com,ops@example.com
 1. **Configure Alerts**: Set up Slack/email in `.env`
 2. **Ingest Real Logs**: Connect your services to the API
 3. **Train Models**: Use historical data to train ML models
-4. **Customize Dashboard**: Modify `dashboard/app.py` for your needs
+4. **Customize Frontend**: Modify React components in `frontend/src/` for your needs
 5. **Scale**: Add more workers, use load balancer
 
 ## 🔍 Monitoring
@@ -277,7 +284,8 @@ MIT License - See [LICENSE](LICENSE)
 - [OpenSearch Guide](https://opensearch.org/docs/latest/)
 - [PyOD Documentation](https://pyod.readthedocs.io/)
 - [LangChain Docs](https://python.langchain.com/)
-- [Streamlit Guide](https://docs.streamlit.io/)
+- [React Documentation](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
 
 ## 🌟 Features Roadmap
 

@@ -45,7 +45,7 @@ fi
 echo ""
 echo "✨ AI DevOps Monitor is starting up!"
 echo ""
-echo "📊 Dashboard:     http://localhost:8501"
+echo "⚛️  React UI:      http://localhost:5173 (run 'npm run dev' in frontend folder)"
 echo "🔌 API:           http://localhost:8000"
 echo "📖 API Docs:      http://localhost:8000/docs"
 echo "🔍 OpenSearch:    http://localhost:9200"
