@@ -9,6 +9,7 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
 - **Failure Prediction**: XGBoost-based predictive analytics for service failures
 - **AI Root Cause Analysis**: LLM-powered analysis using Mistral 7B for intelligent insights
 - **Modern React Dashboard**: Beautiful UI with real-time metrics and visualizations
+- **Modern React Dashboard**: Beautiful UI with real-time metrics and visualizations
 - **Smart Alerts**: Automated notifications via Slack and email
 - **Scalable Storage**: OpenSearch for efficient log indexing and search
 
@@ -28,6 +29,8 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
                                  │
                                  ▼
                         ┌─────────────────┐
+                        │  React Dashboard │
+                        │  (Vite + React) │
                         │  React Dashboard │
                         │  (Vite + React) │
                         └─────────────────┘
@@ -91,6 +94,13 @@ cd frontend
 npm install
 npm run dev
 # Access at http://localhost:5173
+
+**React Dashboard**
+```bash
+cd frontend
+npm install
+npm run dev
+# Access at http://localhost:5173
 ```
 
 6. **API Documentation**
@@ -146,28 +156,43 @@ done
 
 ### Dashboard Features
 
-1. **Overview Tab**
-   - Real-time metrics (total logs, errors, warnings)
-   - Log level distribution pie chart
-   - Logs by service bar chart
-   - Recent logs table with filtering
+1. **Dashboard Page**
+   - Live system metrics and stats
+   - Interactive charts (Chart.js)
+   - Service health monitoring
+   - Recent anomalies preview
+   - Log level distribution
 
-2. **Anomalies Tab**
-   - Detected anomalies with scores
-   - Anomaly score distribution
-   - Detailed anomaly information
+2. **Logs Page**
+   - Searchable log table with filters
+   - Level-based color coding
+   - Auto-refresh every 10 seconds
+   - Export logs to JSON
+   - Service and level filtering
 
-3. **Predictions Tab**
+3. **Anomalies Page**
+   - Severity-based cards (Low/Medium/High/Critical)
+   - Anomaly score visualization
+   - Statistics overview
+   - Timestamp and service info
+   - Refresh button
+
+4. **Predict & RCA Page**
    - Service-specific failure prediction
-   - Risk level gauge (low/medium/high)
-   - Probability and confidence metrics
-   - Prediction features
+   - Risk gauge with recommendations
+   - AI-powered root cause analysis
+   - Select multiple logs for analysis
+   - Context input for better insights
 
-4. **AI Analysis Tab**
-   - Select error logs for analysis
-   - LLM-powered root cause analysis
-   - Actionable recommendations
-   - Context-aware insights
+5. **Settings Page**
+   - Slack webhook configuration
+   - SMTP email setup
+   - Test alert functionality
+   - Save configuration via API
+
+**Tech Stack**: React 18, Vite, TailwindCSS, React Router, Chart.js, Recharts, Axios, Lucide Icons
+
+See [frontend/README.md](frontend/README.md) for detailed setup instructions.
 
 ## Configuration
 
@@ -269,6 +294,17 @@ ai-devops-monitor/
 │   │   └── utils/             # Helper functions
 │   ├── package.json
 │   └── vite.config.js
+├── frontend/                  # React dashboard
+│   ├── src/
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Page components
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── utils/            # API client
+│   │   ├── App.jsx           # Main app
+│   │   └── main.jsx          # Entry point
+│   ├── package.json
+│   ├── vite.config.js
+│   └── tailwind.config.js
 ├── data/
 │   └── sample_logs.json       # Sample log data
 ├── docker-compose.yml         # Docker services
@@ -299,9 +335,10 @@ ollama pull mistral
 
 4. **Run backend**
 ```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uvicorn app.main:app --reload --port 8000
 ```
 
+5. **Run frontend**
 5. **Run frontend**
 ```bash
 cd frontend
@@ -330,9 +367,6 @@ curl http://localhost:11434/api/tags
 ```bash
 # View backend logs
 docker logs -f backend
-
-# View dashboard logs
-docker logs -f dashboard
 
 # View OpenSearch logs
 docker logs -f opensearch
