@@ -98,6 +98,50 @@ npm run dev
 http://localhost:8000/docs
 ```
 
+## ☁️ Azure Deployment
+
+Deploy to Azure Cloud for production use:
+
+### Quick Deploy (Recommended)
+
+**Windows:**
+```powershell
+.\deploy-azure.ps1
+```
+
+**Linux/Mac:**
+```bash
+chmod +x deploy-azure.sh
+./deploy-azure.sh
+```
+
+### Deployment Options
+
+1. **Azure VM** - Best for full control (~$150/month)
+2. **Azure Container Instances** - Serverless, pay-per-use
+3. **Azure Kubernetes Service** - Enterprise-scale (~$490/month)
+
+See complete guides:
+- 📘 [Azure Deployment Guide](azure-deploy.md) - Detailed instructions
+- ⚡ [Azure Quick Start](azure-quickstart.md) - Quick reference
+
+### Kubernetes Deployment
+
+For AKS deployment:
+
+```bash
+# Create AKS cluster
+az aks create --resource-group ai-devops-rg --name ai-devops-aks
+
+# Get credentials
+az aks get-credentials --resource-group ai-devops-rg --name ai-devops-aks
+
+# Deploy
+kubectl apply -f kubernetes/
+```
+
+All Kubernetes manifests are in the `kubernetes/` directory.
+
 ## Usage
 
 ### Ingest Logs

@@ -8,7 +8,7 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
 - **Anomaly Detection**: ML-powered detection using Isolation Forest and sentence embeddings
 - **Failure Prediction**: XGBoost-based predictive analytics for service failures
 - **AI Root Cause Analysis**: LLM-powered analysis using Mistral 7B for intelligent insights
-- **Interactive Dashboard**: Streamlit-based UI with real-time metrics and visualizations
+- **Modern React Dashboard**: Beautiful UI with real-time metrics and visualizations
 - **Smart Alerts**: Automated notifications via Slack and email
 - **Scalable Storage**: OpenSearch for efficient log indexing and search
 
@@ -28,8 +28,8 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
                                  │
                                  ▼
                         ┌─────────────────┐
-                        │    Dashboard    │
-                        │   (Streamlit)   │
+                        │  React Dashboard │
+                        │  (Vite + React) │
                         └─────────────────┘
 ```
 
@@ -42,7 +42,7 @@ An open-source AI-powered DevOps monitoring system with intelligent anomaly dete
   - XGBoost for failure prediction
   - SentenceTransformers for log embeddings
 - **LLM**: Mistral 7B via Ollama
-- **Dashboard**: Streamlit with Plotly
+- **Frontend**: React 18 + Vite + TailwindCSS + Chart.js
 - **Deployment**: Docker & Docker Compose
 - **Alerts**: Slack webhooks, SMTP email
 
@@ -77,7 +77,6 @@ This will start:
 - OpenSearch (port 9200)
 - Ollama with Mistral (port 11434)
 - FastAPI Backend (port 8000)
-- Streamlit Dashboard (port 8501)
 
 4. **Pull Mistral model** (first time only)
 ```bash
@@ -85,8 +84,13 @@ docker exec -it ollama ollama pull mistral
 ```
 
 5. **Access the dashboard**
-```
-http://localhost:8501
+
+**React Dashboard**
+```bash
+cd frontend
+npm install
+npm run dev
+# Access at http://localhost:5173
 ```
 
 6. **API Documentation**
@@ -258,8 +262,13 @@ ai-devops-monitor/
 │   │   ├── config.py          # Configuration
 │   │   └── preprocess.py      # Log preprocessing
 │   └── models/                # Trained ML models
-├── dashboard/
-│   └── app.py                 # Streamlit dashboard
+├── frontend/                   # React frontend
+│   ├── src/
+│   │   ├── components/        # UI components
+│   │   ├── pages/             # Page components
+│   │   └── utils/             # Helper functions
+│   ├── package.json
+│   └── vite.config.js
 ├── data/
 │   └── sample_logs.json       # Sample log data
 ├── docker-compose.yml         # Docker services
@@ -293,10 +302,12 @@ ollama pull mistral
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-5. **Run dashboard**
+5. **Run frontend**
 ```bash
-cd dashboard
-streamlit run app.py
+cd frontend
+npm install
+npm run dev
+# Access at http://localhost:5173
 ```
 
 ## Monitoring & Operations
